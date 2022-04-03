@@ -7,9 +7,7 @@ import 'package:assignment_6/model/user_model.dart';
 import 'package:assignment_6/screens/all_data.dart';
 import 'package:assignment_6/widget/my_button.dart';
 import 'package:assignment_6/widget/my_text_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreens extends StatefulWidget {
@@ -72,8 +70,7 @@ class _LoginScreensState extends State<LoginScreens> {
                   SizedBox(
                     height: 120,
                     child: Image(
-                      image: NetworkImage(
-                          'https://iconsplace.com/wp-content/uploads/_icons/ff0000/256/png/database-icon-14-256.png'),
+                      image: AssetImage("assets/database.png"),
                       width: 120,
                       color: kRedColor,
                     ),
