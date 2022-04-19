@@ -31,18 +31,6 @@ class _AllDataState extends State<AllData> {
     _getAllUsers();
   }
 
-  Future<void> _addUser() async {
-    await SQLHelper.createItem(
-        UserModel.username.toString(), UserModel.password.toString());
-    _getAllUsers();
-  }
-
-  Future<void> _updateUser(int id) async {
-    await SQLHelper.updateItem(
-        id, UserModel.username.toString(), UserModel.password.toString());
-    _getAllUsers();
-  }
-
   void _deleteUser(int id) async {
     await SQLHelper.deleteItem(id);
     ScaffoldMessenger.of(context).showSnackBar(
@@ -77,109 +65,101 @@ class _AllDataState extends State<AllData> {
             ),
           );
         },
-        backgroundColor: kRedColor,
-        child: Icon(Icons.add),
+        backgroundColor: kGreenShadeColor,
+        child: Icon(Icons.add, color: Colors.white),
       ),
       appBar: AppBar(
-        backgroundColor: kRedColor,
+        backgroundColor: kGreenShadeColor,
         title: Text(
           "All Users",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
       ),
-      backgroundColor: Colors.black,
-      body: Container(
-        height: size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/back.png'),
-            fit: BoxFit.fill,
-          ),
-        ),
-        child: _isLoading
-            ? CircularProgressIndicator(color: kRedColor)
-            : ListView.builder(
-                itemCount: UserModel.allUsers.length,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      if (index == 0) SizedBox(height: 30),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.grey.withOpacity(0.2),
-                          ),
-                          child: ListTile(
-                            trailing: InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (context) {
-                                    return SingleChildScrollView(
-                                      child: Container(
-                                        padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
-                                        ),
-                                        child:
-                                            UpdateInfoBottomSheet(index: index),
+      backgroundColor: Colors.white,
+      body: _isLoading
+          ? CircularProgressIndicator(color: kRedColor)
+          : ListView.builder(
+              itemCount: UserModel.allUsers.length,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    if (index == 0) SizedBox(height: 30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white),
+                          borderRadius: BorderRadius.circular(20),
+                          color: kSkyBlueShade.withOpacity(0.2),
+                        ),
+                        child: ListTile(
+                          trailing: InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) {
+                                  return SingleChildScrollView(
+                                    child: Container(
+                                      padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
                                       ),
-                                    );
-                                  },
-                                );
-                              },
-                              child: Icon(
-                                Icons.edit,
-                                color: kSkyBlueShade,
-                                size: 30,
-                              ),
-                            ),
-                            leading: Icon(
-                              Icons.person,
-                              color: kSkyBlueShade,
-                              size: 35,
-                            ),
-                            onLongPress: () {
-                              _deleteUser(UserModel.allUsers[index]['id']);
+                                      child:
+                                          UpdateInfoBottomSheet(index: index),
+                                    ),
+                                  );
+                                },
+                              );
                             },
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  UserModel.allUsers[index]['username'],
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                            child: Icon(
+                              Icons.edit,
+                              color: kSkyBlueShade,
+                              size: 30,
                             ),
-                            subtitle: Text(
-                              " ${UserModel.allUsers[index]['password']}",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
+                          ),
+                          leading: Icon(
+                            Icons.person,
+                            color: kSkyBlueShade,
+                            size: 35,
+                          ),
+                          onLongPress: () {
+                            _deleteUser(UserModel.allUsers[index]['id']);
+                          },
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                UserModel.allUsers[index]['username'],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
+                            ],
+                          ),
+                          subtitle: Text(
+                            " ${UserModel.allUsers[index]['password']}",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
                             ),
                           ),
                         ),
                       ),
-                      // Divider(color: Colors.white38),
-                    ],
-                  );
-                },
-              ),
-      ),
+                    ),
+                    // Divider(color: Colors.white38),
+                  ],
+                );
+              },
+            ),
     );
   }
 }

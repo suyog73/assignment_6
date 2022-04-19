@@ -49,134 +49,125 @@ class _LoginScreensState extends State<LoginScreens> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: ModalProgressHUD(
         color: Colors.black,
         inAsyncCall: _isLoading,
-        progressIndicator: CircularProgressIndicator(color: kRedColor),
-        child: Container(
-          height: size.height,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/back.png'),
-              fit: BoxFit.fill,
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(height: 364 / 3),
-                  SizedBox(
-                    height: 120,
-                    child: Image(
-                      image: AssetImage("assets/database.png"),
-                      width: 120,
-                      color: kRedColor,
-                    ),
+        progressIndicator: CircularProgressIndicator(color: kGreenShadeColor),
+        child: SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: 364 / 3),
+                SizedBox(
+                  height: 120,
+                  child: Image(
+                    image: AssetImage("assets/database.png"),
+                    width: 120,
+                    color: kGreenShadeColor,
                   ),
-                  SizedBox(height: 35 / 3),
-                  Text(
-                    'Sqflite App',
-                    style: TextStyle(
-                      color: kRedColor,
-                      fontSize: 45,
-                    ),
+                ),
+                SizedBox(height: 35 / 3),
+                Text(
+                  'Sqflite App',
+                  style: TextStyle(
+                    color: kGreenShadeColor,
+                    fontSize: 45,
                   ),
-                  SizedBox(height: 223 / 3),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 105 / 3),
-                    child: Form(
-                      key: _formFieldKey,
-                      child: Column(
-                        children: [
-                          MyTextInput(
-                            icon: Icons.person,
-                            hintText: 'Username',
-                            controller: _usernameController,
-                            validator: userNameValidator,
-                            textInputAction: TextInputAction.next,
-                          ),
-                          SizedBox(height: 45.6 / 3),
-                          MyTextInput(
-                            hintText: "Password",
-                            icon: Icons.lock_rounded,
-                            controller: _passwordController,
-                            validator: passwordRequireValidator,
-                            textInputAction: TextInputAction.done,
-                          ),
-                          SizedBox(height: 60),
-                          InkWell(
-                            onTap: () async {
-                              if (_formFieldKey.currentState!.validate()) {
-                                setState(() {
-                                  _isLoading = true;
-                                  UserModel.username = _usernameController.text;
-                                  UserModel.password = _passwordController.text;
-                                });
-                                await _addUser();
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => AllData(),
-                                  ),
-                                );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    backgroundColor: kSkyBlueShade,
-                                    content: Text(
-                                      'Successfully added a user',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }
-                            },
-                            child: MyButton(text: "Login"),
-                          ),
-                          SizedBox(height: 112.7 / 3),
-                          InkWell(
-                            onTap: () {
+                ),
+                SizedBox(height: 223 / 3),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 105 / 3),
+                  child: Form(
+                    key: _formFieldKey,
+                    child: Column(
+                      children: [
+                        MyTextInput(
+                          icon: Icons.person,
+                          hintText: 'Username',
+                          controller: _usernameController,
+                          validator: userNameValidator,
+                          textInputAction: TextInputAction.next,
+                        ),
+                        SizedBox(height: 45.6 / 3),
+                        MyTextInput(
+                          hintText: "Password",
+                          icon: Icons.lock_rounded,
+                          controller: _passwordController,
+                          validator: passwordRequireValidator,
+                          textInputAction: TextInputAction.done,
+                        ),
+                        SizedBox(height: 60),
+                        InkWell(
+                          onTap: () async {
+                            if (_formFieldKey.currentState!.validate()) {
+                              setState(() {
+                                _isLoading = true;
+                                UserModel.username = _usernameController.text;
+                                UserModel.password = _passwordController.text;
+                              });
+                              await _addUser();
+                              setState(() {
+                                _isLoading = false;
+                              });
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => AllData(),
                                 ),
                               );
-                            },
-                            child: Container(
-                              alignment: AlignmentDirectional.center,
-                              height: 50,
-                              width: size.width * 0.5,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: kSkyBlueShade,
-                                  width: 2,
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: kGreenShadeColor,
+                                  content: Text(
+                                    'Successfully added a user',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 18,
+                                    ),
+                                  ),
                                 ),
+                              );
+                            }
+                          },
+                          child: MyButton(text: "Login"),
+                        ),
+                        SizedBox(height: 112.7 / 3),
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AllData(),
                               ),
-                              child: Text(
-                                "Enter as a guest",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                            );
+                          },
+                          child: Container(
+                            alignment: AlignmentDirectional.center,
+                            height: 50,
+                            width: size.width * 0.5,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: kSkyBlueShade,
+                                width: 2,
+                              ),
+                            ),
+                            child: Text(
+                              "Enter as a guest",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 74 / 3),
-                ],
-              ),
+                ),
+                SizedBox(height: 74 / 3),
+              ],
             ),
           ),
         ),

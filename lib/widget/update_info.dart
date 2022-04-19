@@ -39,7 +39,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
     }
 
     return Container(
-      color: kBlueShade.withOpacity(0.8),
+      color: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -52,7 +52,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
                   Text(
                     "Username",
                     style: TextStyle(
-                      color: kRedColor,
+                      color: kGreenShadeColor,
                       fontSize: 22,
                       fontWeight: FontWeight.w500,
                     ),
@@ -67,7 +67,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
                       keyboardType: TextInputType.name,
                       initialValue: UserModel.allUsers[widget.index]
                           ["username"],
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 18),
                       cursorHeight: 20,
                       cursorColor: kRedColor,
                       autofocus: true,
@@ -85,7 +85,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
                   Text(
                     "Password",
                     style: TextStyle(
-                      color: kRedColor,
+                      color: kGreenShadeColor,
                       fontSize: 22,
                       fontWeight: FontWeight.w500,
                     ),
@@ -100,7 +100,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
                       keyboardType: TextInputType.name,
                       initialValue: UserModel.allUsers[widget.index]
                           ["password"],
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 18),
                       cursorHeight: 20,
                       cursorColor: kRedColor,
                       autofocus: true,
@@ -143,7 +143,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
 
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                  backgroundColor: kPinkShade,
+                                  backgroundColor: kGreenShadeColor,
                                   content: Text(
                                     'User details updated',
                                     style: TextStyle(
@@ -158,7 +158,7 @@ class _UpdateInfoBottomSheetState extends State<UpdateInfoBottomSheet> {
                           child: Text(
                             'Save',
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),

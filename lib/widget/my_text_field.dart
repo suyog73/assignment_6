@@ -32,7 +32,7 @@ class _MyTextInputState extends State<MyTextInput> {
       children: [
         Text(
           widget.hintText,
-          style: TextStyle(color: Colors.white, fontSize: 50 / 3),
+          style: TextStyle(color: Colors.black, fontSize: 50 / 3),
         ),
         SizedBox(height: 27 / 3),
         Stack(
@@ -41,25 +41,25 @@ class _MyTextInputState extends State<MyTextInput> {
               height: 54,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24 / 3),
-                color: Colors.black,
+                color: Colors.white,
                 border: Border.all(color: Colors.grey.shade700),
               ),
             ),
             TextFormField(
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontSize: 16,
               ),
               decoration: kTextFormFieldAuthDec2.copyWith(
                 hintText: widget.hintText,
                 prefixIcon: Icon(
                   widget.icon,
-                  color: kRedColor,
+                  color: kGreenShadeColor,
                 ),
                 errorStyle: TextStyle(color: kRedColor),
               ),
               textInputAction: widget.textInputAction,
-              cursorColor: Colors.white70,
+              cursorColor: Colors.black,
               controller: widget.controller,
               onSaved: (value) {
                 widget.controller.value =

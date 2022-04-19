@@ -14,7 +14,7 @@ class MyButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 144 / 3,
       decoration: BoxDecoration(
-        color: kRedColor,
+        color: kGreenShadeColor,
         borderRadius: BorderRadius.circular(24 / 3),
       ),
       child: Text(
